@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Hostel Bites — Premium Snacks Self-Pickup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;900&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <style>
+:root {
+  --accent: #FFBA3A;
+  --accent-glow: #FFC300;
+  --gradient: linear-gradient(135deg, #252242 0%, #FFBA3A 60%, #FF8400 100%);
+  --menu-bg: linear-gradient(125deg, #232241 25%, #ffba3a 100%);
+  --text-main: #fafbfb;
+  --text-sub: #ffeaa7;
+  --radius: 24px;
+  --shadow-lg: 0 8px 28px #ffba3a29,0 2px 10px #3a295818;
+  --glass: rgba(32,28,44,0.89);
+}
+html{scroll-behavior:smooth;}
+body {
+  font-family:'Outfit', 'Montserrat', sans-serif; margin:0;
+  min-height:100vh;
+  background:var(--gradient);
+  color:var(--text-main);
+  box-sizing:border-box;
+}
+
+nav {
+  position:fixed;top:0;left:0;width:100%;z-index:1001;
+  background:var(--glass);backdrop-filter:blur(16px);
+  box-shadow:0 1.5px 15px #FFBA3A28;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px min(7vw,54px);
+  border-bottom:2px solid #ffba3a25;
+  transition:background .4s;
+}
+.nav-logo {
+  display:flex;align-items:center;gap:10px;
+  font-family:'Montserrat',sans-serif;font-weight:900;
+  font-size:1.25em;letter-spacing:1.1px;color:var(--accent);
+  text-shadow:0 1.5px 8px #ffc30042;
+}
+.nav-logo img {
+  width:34px;height:34px;object-fit:cover;border-radius:50%;box-shadow:0 2px 9px #ffc30021,0 1px 3px #fff4;
+}
+nav ul {
+  list-style:none;display:flex;gap:17px;padding:0;margin:0;
+}
+nav ul li a {
+  text-decoration:none;
+  color:var(--text-main);
+  font-family:'Montserrat',sans-serif;
+  font-weight:800; padding:9px 14px;border-radius:7px;
+  font-size:1em;letter-spacing:.05em;outline:none;
+  border: 0;
+  transition:background .17s,color .17s;
+}
+nav ul li a:focus, nav ul li a:hover, nav ul li .active {
+  background:var(--accent-glow);
+  color:#251d14;
+}
+.mode-toggle {
+  border:none;background:var(--glass);
+  color:var(--accent-glow);font-size:1.16em;border-radius:50%;cursor:pointer;
+  width:34px;height:34px;box-shadow:0 2px 10px #FFC30022;margin-left:11px;outline:none;
+  transition:background .18s;
+}
+.burger {display:none;}
+.burger div {background:var(--accent-glow);height:4px;width:29px;border-radius:4px;margin:1.5px 0;}
+@media(max-width:700px){
+  nav{padding:11px 2vw;}
+  nav ul{flex-direction:column;gap:0;background:var(--glass);position:absolute;top:58px;right:0;width:152px;display:none;box-shadow:var(--shadow-lg);border-radius:0 0 0 12px;}
+  nav ul.active{display:flex;}
+  .burger{display:flex;flex-direction:column;justify-content:center;align-items:center;cursor:pointer;}
+  .mode-toggle{margin-left:0;}
+}
+
+.hero {
+  min-height:340px;padding-top:60px;padding-bottom:24px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:var(--menu-bg);
+  position:relative;
+  box-shadow: 0 0 45px #ffba3a19;
+}
+.hero-content {
+  position:relative;z-index:2;color:#fff;max-width:580px;margin:auto;padding:2vw;
+  animation:fade-up 0.85s cubic-bezier(.41,.95,.56,1.07);
+  filter:drop-shadow(0 2.5px 7px #ffc30017);
+}
+@keyframes fade-up { from { opacity:.12; transform:translateY(45px);} to { opacity:1; transform:none;} }
+.hero-content h1 {
+  font-family:'Montserrat',sans-serif;font-size:2.4em;
+  font-weight:900;background:-webkit-linear-gradient(120deg,#FFBA3A 60%,#FF8400 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  text-fill-color:transparent;
+  margin-bottom:15px;line-height:1.1;letter-spacing:.04em;
+}
+.hero-content p {
+  font-family:'Outfit',sans-serif;
+  font-size:1.14em;color:#f6e8da;margin-bottom:19px;
+  background:-webkit-linear-gradient(90deg,#ffeaa7 0%,#ffc300 80%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.btn-accent {
+  box-shadow:0 3px 13px #ffd30018,0 1.5px 7px #fff1;
+  background:linear-gradient(90deg,#ffba3a 60%,#FF8400 97%);
+  color:#28213F;
+  border:none;border-radius:20px;padding:13px 27px;font-size:1.08em;font-family:'Montserrat';font-weight:900;
+  transition:filter .18s,transform .14s;
+  cursor:pointer;text-decoration:none;display:inline-block;
+  letter-spacing:.06em;outline: none;
+}
+.btn-accent:hover,.btn-accent:focus{transform:scale(1.03);filter:brightness(1.10);}
+.category-tabs{display:flex;justify-content:center;gap:15px;margin-top:14px;flex-wrap:wrap;}
+.category-tab {
+  padding:8px 20px;border:none;border-radius:19px;background:rgba(255,255,255,0.15);color:#2c2218;font-weight:800;font-family:'Montserrat';
+  font-size:1.01em;cursor:pointer;transition:.16s;outline:none;border:0;
+  box-shadow:0 1px 5px #ffba3a14;
+}
+.category-tab.active,.category-tab:focus {background:var(--accent-glow);color:#231e10;}
+.section{padding:32px 12px 21px;max-width:990px;margin:0 auto;}
+.section h2{font-size:1.37em;text-align:center;font-weight:900;color:#fff;font-family:'Montserrat';letter-spacing:.09em;margin-bottom:0;}
+.section h2:after{content:"";display:block;width:37px;height:3px;background:linear-gradient(90deg,#ffba3a 75%,#FF8400 100%);
+margin:7px auto;border-radius:3px;}
+.menu-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));margin-top:20px;}
+.menu-card{
+  background:linear-gradient(119deg,#191928 65%,#ffba3a25 100%);
+  border-radius:var(--radius);box-shadow:var(--shadow-lg);
+  border:2.1px solid #ffba3a1a;
+  transition:filter .14s,transform .11s;
+  position:relative;display:flex;flex-direction:column;align-items:center;justify-content:space-between;min-height:166px;
+}
+.menu-card img{width:100%;max-width:100%;height:76px;object-fit:cover;display:block;border-radius:12px 12px 0 0;background:#232633;cursor:pointer;transition:filter .17s;}
+.menu-card img:hover{filter:brightness(1.09) contrast(1.09);}
+.menu-card-content{padding:9px 6px 12px;text-align:center;flex:1;}
+.menu-card-content h4{margin-bottom:7px;font-size:1.10em;color:var(--text-sub);font-weight:900;font-family:'Montserrat';letter-spacing:.08em;}
+.menu-card-content p{color:var(--accent-glow);font-weight:900;margin-bottom:6px;font-size:.99em;}
+.menu-card-content a{
+  display:inline-block;font-size:0.97em;color:#231e10;background:linear-gradient(90deg,#FFBA3A 78%,#FF8400 100%);
+  box-shadow:0 1px 6px #ffba3a11;
+  padding:8px 16px;margin-top:3px;border-radius:16px;font-weight:900;text-decoration:none;transition:filter .11s;outline:none;font-family:'Montserrat';
+  letter-spacing:.09em;
+}
+.menu-card-content a:active,.menu-card-content a:hover{filter:brightness(1.12);}
+.menu-card .card-badge{
+  display:inline-block;position:absolute;top:13px;right:12px;color:#fff;padding:5px 14px;font-size:.82em;
+  background:linear-gradient(92deg,#FFBA3A 70%,#FF8400 100%);
+  border-radius:13px;font-weight:900;box-shadow:0 1px 7px #ffba3a22;letter-spacing:.07em;
+  font-family:'Montserrat';opacity:1;
+}
+.menu-card .emoji{font-size:1.12em;margin-right:6px;}
+.wa-bubble{
+  position:fixed;bottom:21px;right:21px;z-index:3012;background:linear-gradient(120deg,#ffba3a 85%,#20d562 100%);
+  color:#2e2b1a;padding:11px 17px;border-radius:20px;font-size:1.09em;box-shadow:0 2px 10px #ffba3a21;
+  display:flex;align-items:center;gap:7px;font-weight:900;text-decoration:none;transition:filter .18s;
+  border:2px solid #fff8;
+}
+.wa-bubble:hover {filter:brightness(1.12);}
+.wa-bubble i{font-size:1.15em;}
+.about-card{
+  background:linear-gradient(110deg,#232241 65%,#ffba3a29 100%);
+  padding:23px 13px;text-align:center;
+  border-radius:var(--radius);box-shadow:0 2px 10px #ffba3a13,0 1px 5px #0002;
+  max-width:420px;margin:25px auto 12px auto;display:flex;flex-direction:column;align-items:center;
+}
+.about-card-avatar{background:var(--accent-glow);width:41px;height:41px;border-radius:50%;overflow:hidden;margin-bottom:9px;display:inline-block;box-shadow:0 1px 7px #ffba3a18;}
+.about-card-avatar img{width:37px;height:37px;border-radius:50%;object-fit:cover;}
+.about-card h2{color:var(--accent);margin-top:4px;font-family:'Montserrat';font-size:1.18em;}
+.about-card p{color:var(--text-sub);font-size:.97em;margin-top:5px;font-family:'Outfit';letter-spacing:.01em;}
+.about-card .btn-accent{margin-top:8px;}
+.scroll-top-btn {
+  display:none;position:fixed;bottom:13px;left:15px;z-index:30000;
+  background:var(--accent-glow);color:#181f34;padding:9px 15px;border-radius:15px;font-size:1.1em;cursor:pointer;box-shadow:0 2px 4px #FFC30023;font-weight:900;transition:background .12s;}
+.scroll-top-btn:hover,.scroll-top-btn:active{background:var(--accent);}
+footer{padding:17px 0 8px;color:#d2d3e1;font-size:.97em;text-align:center;}
+@media(max-width:700px){
+  .section{padding:11px 2vw;}
+  .menu-grid{gap:7px;grid-template-columns:1fr;}
+  .menu-card img{height:60px;}
+  .about-card{padding:7px 2vw;}
+  .hero-content h1{font-size:1.2em;}
+}
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-logo">
+      <img src="https://images.unsplash.com/photo-1625512478230-56120ff6bccb?auto=format&fit=facearea&w=96&q=80" alt="Hostel Bites Icon"> Hostel Bites
+    </div>
+    <div class="burger" id="burger"><div></div><div></div><div></div></div>
+    <ul>
+      <li><a href="#menu" class="active">Menu</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="https://wa.me/917398858316" target="_blank" rel="noopener">WhatsApp Order</a></li>
+    </ul>
+    <button class="mode-toggle" id="toggleMode" title="Toggle light/dark mode">🌙</button>
+  </nav>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Get Your Snacks.<br>Be Legendary!</h1>
+      <p>Craving late-night bites? 🚀 Hostel Bites brings munchies, magic & more. <br>Order on WhatsApp, then swing by <b>Room 112B</b> — snack like a pro.</p>
+      <a href="#menu" class="btn-accent">🍔 Find Your Flavour</a>
+      <div class="category-tabs">
+        <button class="category-tab active" data-category="all" tabindex="0">All</button>
+        <button class="category-tab" data-category="cravings" tabindex="0">Instant Cravings</button>
+        <button class="category-tab" data-category="munchies" tabindex="0">Chips & Chocolates</button>
+        <button class="category-tab" data-category="beverages" tabindex="0">Beverages</button>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="menu">
+    <h2>Snack Menu</h2>
+    <div class="menu-grid" id="menuGrid"></div>
+  </section>
+  <section id="about">
+    <div class="about-card">
+      <div class="about-card-avatar">
+        <img src="https://images.unsplash.com/photo-1508214751196-bc5a69690aa9?auto=format&fit=facearea&w=200&q=80" alt="PYOR Avatar">
+      </div>
+      <h2>Why Hostel Bites?</h2>
+      <p>
+        Because you deserve snacks with style! Order, pick up, and tell everyone how legendary your taste is. <br> Powered by PYOR — zero walking, all winning.
+      </p>
+      <a href="https://wa.me/917398858316" class="btn-accent" target="_blank" rel="noopener">🚀 WhatsApp Your Order</a>
+    </div>
+  </section>
+  <a class="wa-bubble" href="https://wa.me/917398858316" target="_blank">
+    <i class="fab fa-whatsapp"></i> Chat Now
+  </a>
+  <button class="scroll-top-btn" id="scrollTopBtn" title="Go to top">↑</button>
+  <footer>
+    © 2025 Hostel Bites. Snack with style by PYOR.
+  </footer>
+<script>
+const burger = document.getElementById('burger');
+const navUl = document.querySelector('nav ul');
+burger.onclick = ()=>{
+  navUl.classList.toggle('active');
+};
+window.addEventListener('click',function(e){
+  if (!e.target.closest('nav') && navUl.classList.contains('active')) navUl.classList.remove('active');
+});
+
+// Menu data
+const menuData = [
+  { name: 'Maggi Noodles', category: 'cravings', img:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80', price:'MRP + Service', emoji: '🍜', badge: 'Bestseller' },
+  { name: 'Cup Noodles (Veg)', category: 'cravings', img:'https://images.unsplash.com/photo-1519868243900-8febebae8e8e?auto=format&fit=crop&w=400&q=80', price:'MRP + Service', emoji:'🥡', badge: 'Hot' },
+  { name: 'Lays Chips', category: 'munchies', img:'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80', price:'MRP + Service', emoji:'🥔', badge:'Popular'},
+  { name: 'Kurkure', category: 'munchies', img:'https://images.unsplash.com/photo-1506089676908-3592f7389d4d?auto=format&fit=crop&w=400&q=80', price:'MRP + Service',emoji:'🌶️', badge:''},
+  { name: 'Oreo / Bourbon', category: 'munchies', img:'https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?auto=format&fit=crop&w=400&q=80', price:'MRP + Service', emoji:'🍪', badge:'New'},
+  { name: 'Namkeen (Aloo Bhujia)', category: 'beverages', img:'https://images.unsplash.com/photo-1528715471579-d1ba40b5c5cb?auto=format&fit=crop&w=400&q=80', price:'MRP + Service', emoji:'🥙', badge:''},
+  { name: 'Maggi Masala', category: 'beverages', img:'https://images.unsplash.com/photo-1509358271058-acd22cc93839?auto=format&fit=crop&w=400&q=80', price:'MRP + Service', emoji:'🧂', badge:''},
+];
+
+function showToast(msg) {
+  let t = document.createElement('div');
+  t.textContent = msg;
+  t.style.position = 'fixed'; t.style.bottom='21px'; t.style.left='50%'; t.style.transform='translateX(-50%)';
+  t.style.background='linear-gradient(90deg,#ffba3a,#FFC300 99%)'; t.style.color='#191926'; t.style.padding='10px 21px'; t.style.borderRadius='14px';
+  t.style.fontWeight='900'; t.style.letterSpacing='.07em'; t.style.fontSize='1em'; t.style.zIndex='30010';
+  t.style.boxShadow='0 7px 18px #ffb3002a';
+  t.style.fontFamily = "'Montserrat',sans-serif";
+  document.body.appendChild(t);
+  setTimeout(()=>document.body.removeChild(t),1800);
+}
+function renderMenu(category='all') {
+  const grid = document.getElementById('menuGrid');
+  grid.innerHTML = '';
+  menuData.forEach(item => {
+    if(category==='all' || item.category===category){
+      const card = document.createElement('div');
+      card.className = "menu-card";
+      const waLink = `https://wa.me/917398858316?text=I'd%20like%20to%20order%20${encodeURIComponent(item.name)}%20for%20pickup%20from%20Room%20112B`;
+      card.innerHTML = `
+        ${item.badge?`<span class="card-badge">${item.badge}</span>`:""}
+        <img src="${item.img}" alt="${item.name}" onclick="window.open('${item.img}','_blank')" style="cursor:pointer;">
+        <div class="menu-card-content">
+          <h4><span class="emoji">${item.emoji||""}</span>${item.name}</h4>
+          <p>${item.price}</p>
+          <a href="${waLink}" target="_blank" rel="noopener" onclick="showToast('Ready to WhatsApp order!')">Order on WhatsApp</a>
+        </div>
+      `;
+      grid.appendChild(card);
+    }
+  });
+}
+renderMenu();
+
+document.querySelectorAll('.category-tab').forEach(tab=>{
+  tab.onclick=function(){
+    document.querySelectorAll('.category-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    renderMenu(tab.dataset.category);
+  }
+});
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+window.addEventListener('scroll', function(){
+  scrollTopBtn.style.display = window.scrollY>180 ? "block" : "none";
+});
+scrollTopBtn.onclick = ()=> window.scrollTo({top:0,behavior:'smooth'});
+let darkMode = true;
+document.getElementById('toggleMode').onclick=()=>{
+  darkMode=!darkMode;
+  document.body.style.background = darkMode
+    ? "linear-gradient(135deg, #252242 0%, #FFBA3A 55%, #FF8400 100%)"
+    : "linear-gradient(90deg, #ffeae9 0%, #ffd87a 50%, #FFBA3A 90%)";
+  document.body.style.color = darkMode ? "var(--text-main)" : "#24242e";
+  document.documentElement.style.setProperty('--glass', darkMode?"rgba(32,28,44,0.89)":"rgba(255,237,197,0.84)");
+  document.documentElement.style.setProperty('--accent-glow', darkMode?"#FFC300":"#ffd200");
+  document.getElementById('toggleMode').textContent = darkMode?"🌙":"☀️";
+};
+</script>
+</body>
+</html>
