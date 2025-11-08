@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
   <style>
 :root {
+  /* DARK THEME (Default) */
   --accent: #FFBA3A;
   --accent-glow: #FFC300;
   --gradient: linear-gradient(135deg, #252242 0%, #FFBA3A 60%, #FF8400 100%);
@@ -18,6 +19,19 @@
   --shadow-lg: 0 8px 28px #ffba3a29,0 2px 10px #3a295818;
   --glass: rgba(32,28,44,0.89);
 }
+
+html[data-theme="light"] {
+  /* LIGHT THEME */
+  --accent: #FF8400;
+  --accent-glow: #FFBA3A;
+  --gradient: linear-gradient(135deg, #FFF4E0 0%, #FFDDA7 60%, #FFBA3A 100%);
+  --menu-bg: linear-gradient(125deg, #FFFFFF 25%, #FFF4E0 100%);
+  --text-main: #252242;
+  --text-sub: #3A2958;
+  --shadow-lg: 0 8px 28px #ffba3a40,0 2px 10px #3a295822;
+  --glass: rgba(255, 250, 235, 0.89);
+}
+
 html{scroll-behavior:smooth;}
 body {
   font-family:'Outfit', 'Montserrat', sans-serif; margin:0;
@@ -123,7 +137,7 @@ nav ul li a:focus, nav ul li a:hover, nav ul li .active {
 }
 .category-tab.active,.category-tab:focus {background:var(--accent-glow);color:#231e10;}
 .section{padding:32px 12px 21px;max-width:990px;margin:0 auto;}
-.section h2{font-size:1.37em;text-align:center;font-weight:900;color:#fff;font-family:'Montserrat';letter-spacing:.09em;margin-bottom:0;}
+.section h2{font-size:1.37em;text-align:center;font-weight:900;color:var(--text-main);font-family:'Montserrat';letter-spacing:.09em;margin-bottom:0;}
 .section h2:after{content:"";display:block;width:37px;height:3px;background:linear-gradient(90deg,#ffba3a 75%,#FF8400 100%);
 margin:7px auto;border-radius:3px;}
 .menu-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));margin-top:20px;}
@@ -245,6 +259,15 @@ window.addEventListener('click',function(e){
   if (!e.target.closest('nav') && navUl.classList.contains('active')) navUl.classList.remove('active');
 });
 
+// --- FIX: Close mobile menu on link click ---
+document.querySelectorAll('nav ul li a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (navUl.classList.contains('active')) {
+      navUl.classList.remove('active');
+    }
+  });
+});
+
 // Menu data
 const menuData = [
   { name: 'Maggi Noodles', category: 'cravings', img:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80', price:'MRP + Service', emoji: '🍜', badge: 'Bestseller' },
@@ -252,8 +275,9 @@ const menuData = [
   { name: 'Lays Chips', category: 'munchies', img:'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80', price:'MRP + Service', emoji:'🥔', badge:'Popular'},
   { name: 'Kurkure', category: 'munchies', img:'https://images.unsplash.com/photo-1506089676908-3592f7389d4d?auto=format&fit=crop&w=400&q=80', price:'MRP + Service',emoji:'🌶️', badge:''},
   { name: 'Oreo / Bourbon', category: 'munchies', img:'https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?auto=format&fit=crop&w=400&q=80', price:'MRP + Service', emoji:'🍪', badge:'New'},
-  { name: 'Namkeen (Aloo Bhujia)', category: 'beverages', img:'https://images.unsplash.com/photo-1528715471579-d1ba40b5c5cb?auto=format&fit=crop&w=400&q=80', price:'MRP + Service', emoji:'🥙', badge:''},
-  { name: 'Maggi Masala', category: 'beverages', img:'https://images.unsplash.com/photo-1509358271058-acd22cc93839?auto=format&fit=crop&w=400&q=80', price:'MRP + Service', emoji:'🧂', badge:''},
+  // --- FIX: Corrected categories for Namkeen and Maggi Masala ---
+  { name: 'Namkeen (Aloo Bhujia)', category: 'munchies', img:'https://images.unsplash.com/photo-1528715471579-d1ba40b5c5cb?auto=format&fit=crop&w=400&q=80', price:'MRP + Service', emoji:'🥙', badge:''},
+  { name: 'Maggi Masala', category: 'munchies', img:'https://images.unsplash.com/photo-1509358271058-acd22cc93839?auto=format&fit=crop&w=400&q=80', price:'MRP + Service', emoji:'🧂', badge:''},
 ];
 
 function showToast(msg) {
@@ -302,17 +326,20 @@ window.addEventListener('scroll', function(){
   scrollTopBtn.style.display = window.scrollY>180 ? "block" : "none";
 });
 scrollTopBtn.onclick = ()=> window.scrollTo({top:0,behavior:'smooth'});
-let darkMode = true;
-document.getElementById('toggleMode').onclick=()=>{
-  darkMode=!darkMode;
-  document.body.style.background = darkMode
-    ? "linear-gradient(135deg, #252242 0%, #FFBA3A 55%, #FF8400 100%)"
-    : "linear-gradient(90deg, #ffeae9 0%, #ffd87a 50%, #FFBA3A 90%)";
-  document.body.style.color = darkMode ? "var(--text-main)" : "#24242e";
-  document.documentElement.style.setProperty('--glass', darkMode?"rgba(32,28,44,0.89)":"rgba(255,237,197,0.84)");
-  document.documentElement.style.setProperty('--accent-glow', darkMode?"#FFC300":"#ffd200");
-  document.getElementById('toggleMode').textContent = darkMode?"🌙":"☀️";
+
+// --- FIX: Complete Dark/Light Mode Toggle Logic ---
+// Set initial theme
+document.documentElement.setAttribute('data-theme', 'dark');
+const toggleBtn = document.getElementById('toggleMode');
+
+toggleBtn.onclick = () => {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = (currentTheme === 'dark') ? 'light' : 'dark';
+  
+  document.documentElement.setAttribute('data-theme', newTheme);
+  toggleBtn.textContent = (newTheme === 'dark') ? '🌙' : '☀️';
 };
 </script>
 </body>
-</html>
+  </html>
+  
