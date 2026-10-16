@@ -1,175 +1,189 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hostel Bites – Snacks from Room 112B</title>
-<meta name="description" content="Order chips, noodles, biscuits and drinks on WhatsApp and pick them up from Room 112B.">
+<title>Hostel Bites – Snacks, ordered on WhatsApp</title>
+<meta name="description" content="Choose snacks and drinks, send one WhatsApp order, and pick it up from Room 112B.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#14172b; --surface:#1d2142; --line:#2f3560;
-  --text:#f4efe4; --muted:#a8acca;
-  --accent:#f5a524; --accent-text:#f5a524; --on-accent:#1c1406;
-  --display:'Bricolage Grotesque',system-ui,sans-serif;
-  --body:'Instrument Sans',system-ui,sans-serif;
+  --bg:#f6f6f3; --surface:#fff; --line:#e3e3dc; --soft:#efefe9;
+  --text:#161a2e; --muted:#5d6179;
+  --brand:#161a2e; --on-brand:#fff;
+  --accent:#e8900c; --accent-text:#955300; --on-accent:#1b1305;
+  --wa:#1fa855;
+  --r:10px; --font:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
 }
-[data-theme="light"]{
-  --bg:#faf5ea; --surface:#fffdf8; --line:#e5dbc4;
-  --text:#1c1f3a; --muted:#666981;
-  --accent:#f0920e; --accent-text:#9a5600;
+[data-theme="dark"]{
+  --bg:#0e1222; --surface:#161b30; --line:#262c47; --soft:#1d2339;
+  --text:#eef0f7; --muted:#9aa0bd;
+  --brand:#eef0f7; --on-brand:#0e1222;
+  --accent:#f5a524; --accent-text:#f5a524;
 }
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{
-  background:var(--bg);color:var(--text);font:400 1rem/1.55 var(--body);
-  padding-bottom:6rem;transition:background .3s,color .3s;
-}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+html{scroll-behavior:smooth;scroll-padding-top:5rem}
+body{background:var(--bg);color:var(--text);font:400 1rem/1.6 var(--font);-webkit-font-smoothing:antialiased;padding-bottom:5.5rem}
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
-.wrap{width:min(100% - 2.5rem,44rem);margin-inline:auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+[hidden]{display:none!important}
+.wrap{width:min(100% - 2.5rem,68rem);margin-inline:auto}
 
 /* Header */
-header{padding-block:1.25rem}
-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.logo{font:800 1.3rem/1 var(--display);letter-spacing:-.01em}
-.logo span{color:var(--accent-text)}
-.actions{display:flex;align-items:center;gap:.5rem}
-.icon-btn{
-  width:2.5rem;height:2.5rem;border-radius:50%;border:1.5px solid var(--line);
-  display:grid;place-items:center;transition:border-color .2s;
-}
-.icon-btn:hover{border-color:var(--accent)}
-.icon-btn svg{width:1.15rem;height:1.15rem;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;gap:2rem;height:4rem}
+.logo{font-weight:700;font-size:1.15rem;letter-spacing:-.01em;text-decoration:none;display:flex;align-items:center;gap:.6rem;margin-right:auto}
+.logo b{width:1.9rem;height:1.9rem;border-radius:8px;background:var(--brand);color:var(--on-brand);display:grid;place-items:center;font-size:.85rem}
+nav{display:flex;gap:1.75rem}
+nav a{text-decoration:none;color:var(--muted);font-weight:500;font-size:.95rem}
+nav a:hover{color:var(--text)}
+.icon-btn{width:2.3rem;height:2.3rem;border-radius:8px;border:1px solid var(--line);display:grid;place-items:center;background:var(--surface)}
+.icon-btn svg{width:1.05rem;height:1.05rem;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 [data-theme="dark"] .sun,[data-theme="light"] .moon{display:none}
+@media(max-width:640px){nav{display:none}}
 
 /* Hero */
-.hero{padding-block:clamp(2.5rem,9vw,5rem) 2.5rem}
-h1{
-  font:800 clamp(2.6rem,10vw,4.75rem)/.98 var(--display);
-  letter-spacing:-.035em;max-width:11ch;
-  animation:rise .7s cubic-bezier(.2,.8,.2,1) both;
-}
-.hero p{margin-top:1.25rem;max-width:34ch;font-size:1.1rem;color:var(--muted)}
-.pickup{
-  display:inline-flex;align-items:center;gap:.6rem;margin-top:1.75rem;
-  padding:.55rem 1rem;border:1.5px dashed var(--line);border-radius:999px;font-weight:500;
-}
-.pickup i{width:.55rem;height:.55rem;border-radius:50%;background:var(--accent)}
-@keyframes rise{from{opacity:0;transform:translateY(1.25rem)}}
+.hero{display:grid;gap:2.5rem;padding-block:clamp(2.5rem,7vw,4.5rem);align-items:center}
+@media(min-width:860px){.hero{grid-template-columns:1.15fr 1fr;gap:4rem}}
+h1{font-weight:700;font-size:clamp(2.2rem,5.4vw,3.4rem);line-height:1.08;letter-spacing:-.03em;max-width:15ch}
+.lead{margin-top:1.1rem;color:var(--muted);font-size:1.1rem;max-width:42ch}
+.cta-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.75rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.8rem 1.35rem;border-radius:var(--r);font-weight:600;text-decoration:none;border:1px solid transparent;transition:filter .15s,background .15s}
+.btn-primary{background:var(--brand);color:var(--on-brand)}
+.btn-primary:hover{filter:opacity(.88)}
+.btn-ghost{border-color:var(--line);background:var(--surface)}
+.btn-ghost:hover{background:var(--soft)}
+.steps{list-style:none;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.steps li{display:grid;grid-template-columns:2rem 1fr;gap:1rem;padding:1.15rem 1.35rem;border-bottom:1px solid var(--line)}
+.steps li:last-child{border:0}
+.steps .n{width:2rem;height:2rem;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-weight:600;font-size:.9rem}
+.steps strong{display:block;font-weight:600}
+.steps span{color:var(--muted);font-size:.95rem}
 
-/* Menu board */
-.board{
-  background:var(--surface);border:1.5px solid var(--line);border-radius:1.25rem;
-  overflow:hidden;
-}
-.board-head{
-  display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
-  padding:1.1rem 1.25rem;border-bottom:1.5px solid var(--line);
-}
-.board-head h2{font:800 1.35rem/1 var(--display);letter-spacing:-.01em}
-.filters{display:flex;gap:.4rem;flex-wrap:wrap}
-.filters button{
-  padding:.4rem .85rem;border-radius:999px;border:1.5px solid var(--line);
-  font-size:.9rem;font-weight:500;transition:background .15s,border-color .15s;
-}
-.filters button:hover{border-color:var(--accent)}
-.filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+/* Menu + summary */
+.shop{display:grid;gap:1.5rem;padding-bottom:3rem}
+@media(min-width:920px){.shop{grid-template-columns:1fr 21rem;align-items:start}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.menu-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding:1.25rem 1.5rem;border-bottom:1px solid var(--line)}
+h2{font-size:1.3rem;font-weight:700;letter-spacing:-.015em}
+.filters{display:flex;gap:.35rem;flex-wrap:wrap}
+.filters button{padding:.4rem .85rem;border-radius:8px;font-size:.9rem;font-weight:500;color:var(--muted)}
+.filters button:hover{background:var(--soft)}
+.filters button[aria-pressed="true"]{background:var(--brand);color:var(--on-brand)}
+.item{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.5rem;border-bottom:1px solid var(--line)}
+.item:last-child{border:0}
+.item h3{font-size:1rem;font-weight:600;display:flex;gap:.55rem;align-items:center;flex-wrap:wrap}
+.item small{color:var(--muted);font-size:.88rem}
+.tag{font-size:.75rem;font-weight:600;padding:.2rem .5rem;border-radius:6px;background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent-text)}
+.ctl{flex:none;min-width:6.2rem;display:flex;justify-content:flex-end}
+.add{padding:.5rem 1.2rem;border-radius:8px;border:1px solid var(--line);font-weight:600;font-size:.92rem;background:var(--surface)}
+.add:hover{border-color:var(--text)}
+.step{display:flex;align-items:center;border:1px solid var(--text);border-radius:8px}
+.step button{width:2.2rem;height:2.2rem;font-size:1.15rem;font-weight:500}
+.step button:hover{background:var(--soft)}
+.step output{min-width:1.5rem;text-align:center;font-weight:600;font-size:.95rem}
 
-.item{
-  display:flex;align-items:center;justify-content:space-between;gap:1rem;
-  padding:1rem 1.25rem;border-bottom:1px solid var(--line);
-}
-.item:last-child{border-bottom:0}
-.item h3{font:600 1.08rem/1.25 var(--display);display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
-.item small{display:block;margin-top:.15rem;color:var(--muted);font-size:.88rem}
-.tag{
-  font:600 .72rem/1 var(--body);padding:.28rem .5rem;border-radius:.4rem;
-  background:color-mix(in srgb,var(--accent) 20%,transparent);color:var(--accent-text);
-}
-.ctl{flex:none;min-width:6.5rem;display:flex;justify-content:flex-end}
-.add{
-  padding:.5rem 1.15rem;border-radius:999px;border:1.5px solid var(--accent);
-  font-weight:600;color:var(--accent-text);transition:background .15s,color .15s;
-}
-.add:hover{background:var(--accent);color:var(--on-accent)}
-.step{display:flex;align-items:center;background:var(--accent);color:var(--on-accent);border-radius:999px}
-.step button{width:2.4rem;height:2.4rem;font-size:1.25rem;font-weight:600;border-radius:50%}
-.step output{min-width:1.4rem;text-align:center;font-weight:600}
-[hidden]{display:none!important}
+.summary{display:none;position:sticky;top:5rem;padding:1.5rem}
+@media(min-width:920px){.summary{display:block}}
+.summary h2{font-size:1.1rem;margin-bottom:1rem}
+.lines{list-style:none;padding:0;display:grid;gap:.6rem;margin-bottom:1.25rem;font-size:.95rem}
+.lines li{display:flex;justify-content:space-between;gap:1rem}
+.lines .q{color:var(--muted);font-variant-numeric:tabular-nums}
+.empty{color:var(--muted);font-size:.95rem;margin-bottom:1.25rem}
+.meta{border-top:1px solid var(--line);padding-top:1rem;margin-bottom:1.25rem;display:grid;gap:.4rem;font-size:.9rem;color:var(--muted)}
+.meta div{display:flex;justify-content:space-between;gap:1rem}
+.meta b{color:var(--text);font-weight:600}
+.send{display:flex;justify-content:center;width:100%;padding:.85rem 1rem;border-radius:var(--r);background:var(--wa);color:#fff;font-weight:600;text-decoration:none}
+.send:hover{filter:brightness(1.08)}
+.send[aria-disabled="true"]{background:var(--soft);color:var(--muted);pointer-events:none}
 
-/* Cart bar */
-.cart{
-  position:fixed;inset:auto 0 1rem 0;z-index:10;pointer-events:none;
-  padding-bottom:env(safe-area-inset-bottom,0);
-}
-.cart a{
-  pointer-events:auto;display:flex;justify-content:space-between;align-items:center;gap:1rem;
-  width:min(100% - 2rem,40rem);margin-inline:auto;padding:.95rem 1.35rem;
-  background:var(--accent);color:var(--on-accent);border-radius:1rem;
-  font-weight:600;text-decoration:none;box-shadow:0 10px 30px rgb(0 0 0/.3);
-  transform:translateY(0);transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .3s;
-}
-.cart a[aria-hidden="true"]{transform:translateY(140%);opacity:0;pointer-events:none}
+/* Mobile bar */
+.bar{position:fixed;inset:auto 0 0 0;z-index:30;padding:.75rem 1rem calc(.75rem + env(safe-area-inset-bottom,0));background:var(--surface);border-top:1px solid var(--line);transition:transform .25s}
+.bar[aria-hidden="true"]{transform:translateY(100%)}
+.bar .send{max-width:36rem;margin-inline:auto;justify-content:space-between}
+@media(min-width:920px){.bar{display:none}}
 
 /* Footer */
-.how{padding-block:3rem 1rem;display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr))}
-.how h3{font:600 1rem/1.3 var(--display);margin-bottom:.25rem}
-.how p{color:var(--muted);font-size:.95rem}
-footer{padding-block:2rem;color:var(--muted);font-size:.88rem}
-
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+footer{border-top:1px solid var(--line);padding-block:2rem;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 
 <header>
   <div class="wrap">
-    <div class="logo">Hostel<span>Bites</span></div>
-    <div class="actions">
-      <button class="icon-btn" id="theme" aria-label="Switch colour theme">
-        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-        <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-      </button>
-    </div>
+    <a class="logo" href="#top"><b>HB</b>Hostel Bites</a>
+    <nav aria-label="Main">
+      <a href="#menu">Menu</a>
+      <a href="#how">How it works</a>
+      <a href="#" data-chat target="_blank" rel="noopener">Contact</a>
+    </nav>
+    <button class="icon-btn" id="theme" aria-label="Switch colour theme">
+      <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
   </div>
 </header>
 
-<main>
+<main id="top">
   <section class="hero wrap">
-    <h1>Snacks, ready when you are.</h1>
-    <p>Pick what you want, send the order on WhatsApp, collect it from our room.</p>
-    <div class="pickup"><i></i><span>Pickup: Room <span data-room></span></span></div>
+    <div>
+      <h1>Hostel snacks, ordered on WhatsApp.</h1>
+      <p class="lead">Build your order here, send it in one tap, and collect it from Room <span data-room></span>.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#menu">View menu</a>
+        <a class="btn btn-ghost" href="#" data-chat target="_blank" rel="noopener">Ask a question</a>
+      </div>
+    </div>
+    <ol class="steps" id="how">
+      <li><div class="n">1</div><div><strong>Choose items</strong><span>Add what you want from the menu.</span></div></li>
+      <li><div class="n">2</div><div><strong>Send on WhatsApp</strong><span>Your order is written for you.</span></div></li>
+      <li><div class="n">3</div><div><strong>Pick up</strong><span>Collect from Room <span data-room></span>.</span></div></li>
+    </ol>
   </section>
 
-  <section class="wrap" aria-labelledby="menu-title" id="menu">
-    <div class="board">
-      <div class="board-head">
+  <section class="shop wrap" id="menu" aria-labelledby="menu-title">
+    <div class="panel">
+      <div class="menu-head">
         <h2 id="menu-title">Menu</h2>
         <div class="filters" id="filters" role="group" aria-label="Filter by category"></div>
       </div>
       <div id="list"></div>
     </div>
-  </section>
 
-  <section class="how wrap" aria-label="How it works">
-    <div><h3>Choose</h3><p>Add items to your order. Prices are MRP plus a small service charge.</p></div>
-    <div><h3>Send</h3><p>One tap opens WhatsApp with your order already written.</p></div>
-    <div><h3>Pick up</h3><p>Come to Room <span data-room></span> once we confirm. No delivery, no waiting outside.</p></div>
+    <aside class="panel summary" aria-labelledby="sum-title">
+      <h2 id="sum-title">Your order</h2>
+      <p class="empty" id="empty">Nothing added yet. Choose items from the menu.</p>
+      <ul class="lines" id="lines"></ul>
+      <div class="meta">
+        <div><span>Pickup</span><b>Room <span data-room></span></b></div>
+        <div><span>Pricing</span><b id="price"></b></div>
+      </div>
+      <a class="send" data-send href="#" target="_blank" rel="noopener" aria-disabled="true">Send order on WhatsApp</a>
+    </aside>
   </section>
 </main>
 
-<footer class="wrap">© <span id="year"></span> Hostel Bites. Run from the hostel, by PYOR.</footer>
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> Hostel Bites</span>
+    <span>Powered by PYOR</span>
+  </div>
+</footer>
 
-<div class="cart"><a id="cart" href="#" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
-  <span id="cartCount"></span><span>Send order on WhatsApp</span>
-</a></div>
+<div class="bar" id="bar" aria-hidden="true">
+  <a class="send" data-send href="#" target="_blank" rel="noopener" tabindex="-1">
+    <span id="count"></span><span>Send order on WhatsApp</span>
+  </a>
+</div>
 
 <script>
 /* ---------- DATA: edit only this block to change the shop ---------- */
-const CONFIG = { phone: '917398858316', room: '112B', price: 'MRP + service' };
+const CONFIG = { phone: '917398858316', room: '112B', price: 'MRP + service charge' };
 
 const CATEGORIES = [
   { id: 'all',       label: 'All' },
@@ -179,27 +193,31 @@ const CATEGORIES = [
 ];
 
 const MENU = [
-  { id: 'maggi',    name: 'Maggi Noodles',        cat: 'cravings', tag: 'Bestseller' },
-  { id: 'cup',      name: 'Cup Noodles (Veg)',    cat: 'cravings', tag: 'Hot' },
-  { id: 'masala',   name: 'Maggi Masala',         cat: 'cravings' },
-  { id: 'lays',     name: 'Lays Chips',           cat: 'munchies', tag: 'Popular' },
-  { id: 'kurkure',  name: 'Kurkure',              cat: 'munchies' },
-  { id: 'oreo',     name: 'Oreo / Bourbon',       cat: 'munchies', tag: 'New' },
-  { id: 'bhujia',   name: 'Namkeen (Aloo Bhujia)',cat: 'munchies' },
+  { id: 'maggi',   name: 'Maggi Noodles',         cat: 'cravings', tag: 'Bestseller' },
+  { id: 'cup',     name: 'Cup Noodles (Veg)',     cat: 'cravings', tag: 'Popular' },
+  { id: 'masala',  name: 'Maggi Masala',          cat: 'cravings' },
+  { id: 'lays',    name: 'Lays Chips',            cat: 'munchies', tag: 'Popular' },
+  { id: 'kurkure', name: 'Kurkure',               cat: 'munchies' },
+  { id: 'oreo',    name: 'Oreo / Bourbon',        cat: 'munchies', tag: 'New' },
+  { id: 'bhujia',  name: 'Namkeen (Aloo Bhujia)', cat: 'munchies' },
 ];
 
 /* ---------- LOGIC + PRESENTATION ---------- */
 const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
 const cart = {};
 let filter = 'all';
+const chatURL = text => `https://wa.me/${CONFIG.phone}` + (text ? `?text=${encodeURIComponent(text)}` : '');
 
-document.querySelectorAll('[data-room]').forEach(el => el.textContent = CONFIG.room);
+$$('[data-room]').forEach(el => el.textContent = CONFIG.room);
+$$('[data-chat]').forEach(el => el.href = chatURL());
+$('#price').textContent = CONFIG.price;
 $('#year').textContent = new Date().getFullYear();
 
 /* Theme: saved choice, else system preference */
 const root = document.documentElement;
 let saved; try { saved = localStorage.getItem('hb-theme'); } catch {}
-root.dataset.theme = saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+root.dataset.theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 $('#theme').onclick = () => {
   root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
   try { localStorage.setItem('hb-theme', root.dataset.theme); } catch {}
@@ -211,17 +229,18 @@ $('#filters').innerHTML = CATEGORIES.map(c =>
 $('#filters').onclick = e => {
   const b = e.target.closest('button'); if (!b) return;
   filter = b.dataset.cat;
-  document.querySelectorAll('#filters button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  $$('#filters button').forEach(x => x.setAttribute('aria-pressed', x === b));
   renderList();
 };
 
-/* List */
+/* Menu list */
 function renderList() {
+  const label = Object.fromEntries(CATEGORIES.map(c => [c.id, c.label]));
   $('#list').innerHTML = MENU.filter(i => filter === 'all' || i.cat === filter).map(i => `
     <div class="item" data-id="${i.id}">
       <div>
         <h3>${i.name}${i.tag ? `<span class="tag">${i.tag}</span>` : ''}</h3>
-        <small>${CONFIG.price}</small>
+        <small>${label[i.cat]}</small>
       </div>
       <div class="ctl">
         <button class="add" data-do="inc" aria-label="Add ${i.name}">Add</button>
@@ -245,28 +264,33 @@ function syncRow(item) {
 
 $('#list').onclick = e => {
   const btn = e.target.closest('[data-do]'); if (!btn) return;
-  const id = btn.closest('.item').dataset.id;
+  const row = btn.closest('.item'), id = row.dataset.id;
   cart[id] = Math.max(0, (cart[id] || 0) + (btn.dataset.do === 'inc' ? 1 : -1));
   if (!cart[id]) delete cart[id];
-  const row = btn.closest('.item');
   syncRow(MENU.find(m => m.id === id));
   row.querySelector(cart[id] ? '.step [data-do="inc"]' : '.add').focus();
   renderCart();
 };
 
-/* Cart bar + WhatsApp message */
+/* Order summary + WhatsApp message */
 function renderCart() {
-  const lines = MENU.filter(i => cart[i.id]).map(i => `${cart[i.id]} × ${i.name}`);
-  const total = Object.values(cart).reduce((a, b) => a + b, 0);
-  const bar = $('#cart');
-  bar.setAttribute('aria-hidden', total === 0);
-  bar.tabIndex = total ? 0 : -1;
-  $('#cartCount').textContent = `${total} item${total === 1 ? '' : 's'}`;
-  const msg = `Hi, I'd like to order:\n${lines.join('\n')}\n\nPickup from Room ${CONFIG.room}.`;
-  bar.href = `https://wa.me/${CONFIG.phone}?text=${encodeURIComponent(msg)}`;
+  const picked = MENU.filter(i => cart[i.id]);
+  const total = picked.reduce((a, i) => a + cart[i.id], 0);
+  $('#lines').innerHTML = picked.map(i => `<li><span>${i.name}</span><span class="q">× ${cart[i.id]}</span></li>`).join('');
+  $('#empty').hidden = total > 0;
+  $('#count').textContent = `${total} item${total === 1 ? '' : 's'}`;
+  $('#bar').setAttribute('aria-hidden', total === 0);
+
+  const msg = `Hi, I'd like to order:\n${picked.map(i => `${cart[i.id]} × ${i.name}`).join('\n')}\n\nPickup from Room ${CONFIG.room}.`;
+  $$('[data-send]').forEach(a => {
+    a.href = total ? chatURL(msg) : '#';
+    a.setAttribute('aria-disabled', total === 0);
+    a.tabIndex = total ? 0 : -1;
+  });
 }
 
 renderList();
+renderCart();
 </script>
 </body>
 </html>
